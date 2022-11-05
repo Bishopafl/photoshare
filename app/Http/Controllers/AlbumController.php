@@ -8,6 +8,10 @@ use App\Models\Album;
 
 class AlbumController extends Controller
 {
+
+    public function index() {
+        return view('album.index');
+    }
     public function create() {
         return view('album.create');
     }
@@ -34,6 +38,11 @@ class AlbumController extends Controller
         ]);
         $id = $album->id;
         return response()->json(['id' => $id]);
+    }
+
+    public function getAlbums() {
+        $albums = Album::with('category')->where('user_id', auth()->user()->id)->get();
+        return $albums;
     }
 
 }
