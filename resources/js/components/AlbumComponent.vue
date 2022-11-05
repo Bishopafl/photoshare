@@ -4,10 +4,16 @@
             <div class="form-group">
                 <label>Name of Album</label>
                 <input type="text" name="name" class="form-control" v-model="name" maxlength="15">
+                <span v-if="allErrors.name" :class="['danger']">
+                    {{ allErrors.name[0] }}
+                </span>
             </div>
             <div class="form-group">
                 <label>Description of Album</label>
                 <textarea name="description" class="form-control" v-model="description" maxlength="200"></textarea>
+                <span v-if="allErrors.description" :class="['danger']">
+                    {{ allErrors.description[0] }}
+                </span>
             </div>
             <div class="form-group">
                 <label>Category of Album</label>
@@ -15,11 +21,17 @@
                     <option v-for="(category, index) in categories" :key="index" :value="category.id">
                         {{ category.name }}
                     </option>
+                    <span v-if="allErrors.category" :class="['danger']">
+                        {{ allErrors.category[0] }}
+                    </span>
                 </select>
             </div>
             <div class="form-group">
                 <label>Image of Album</label>
                 <input type="file" name="image" class="form-control" v-on:change="onImageChange">
+                <span v-if="allErrors.image" :class="['danger']">
+                    {{ allErrors.image[0] }}
+                </span>
             </div>
             <div class="form-group mt-3">
                 <button class="btn btn-secondary" type="submit">Create Album</button>
@@ -43,6 +55,7 @@ export default {
             categories:[],
             albumId:'',
             success:false,
+            allErrors:[],
         }
     },
     created() {
@@ -81,8 +94,14 @@ export default {
                 this.success=true;
             }).catch((error) => {
                 console.log(error)
+                this.allErrors = error.response.data.errors;
             });
         },
     }
 }
 </script>
+<style type="text/css">
+    .danger {
+        color: red;
+    }
+</style>

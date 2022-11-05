@@ -13,9 +13,14 @@ class AlbumController extends Controller
     }
 
     public function store(Request $request) {
-        // dd($request);
-
-        // dd($request->file('image'));
+        /* lets validate the request! */
+        /* TODO: CREATE A MIDDLEWARE REQUEST FOR THIS CONTROLLER */
+        $this->validate($request, [
+            'name' => 'required|min:3|max:15',
+            'description' => 'required|min:3|max:200',
+            'category_id' => 'required',
+            'image' => 'required|mimes:jpes,jpg,png'
+        ]);
         $imageName = $request->image->hashName(); // stores name to public directory
         $request->image->move(public_path('album'), $imageName);
         
