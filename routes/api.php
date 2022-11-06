@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/categories', [CategoryController::class, 'getCategories']);
+Route::get('/albums/{id}', [AlbumController::class, 'getOneAlbum']);

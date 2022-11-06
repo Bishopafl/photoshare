@@ -28,9 +28,11 @@ app.component('example-component', ExampleComponent);
 import AlbumComponent from './components/AlbumComponent.vue';
 app.component('album', AlbumComponent);
 
-
 import IndexComponent from './components/IndexComponent.vue';
 app.component('index', IndexComponent);
+
+import EditComponent from './components/EditComponent.vue';
+app.component('edit', EditComponent);
 
 // Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
 //     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);

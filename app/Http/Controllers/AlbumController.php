@@ -45,4 +45,8 @@ class AlbumController extends Controller
         return $albums;
     }
 
+    public function getOneAlbum($id) {
+        return Album::with('category')->find($id);
+    }
+
 }
