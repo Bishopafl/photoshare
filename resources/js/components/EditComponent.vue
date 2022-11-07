@@ -84,6 +84,13 @@ import $ from 'jquery';
                 }).then((response) => {
                     $('#closeEditComponentModal').click();
                     this.$emit('recordUpdated', response);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }).catch((error) => {
                     console.log(error);
                 });
