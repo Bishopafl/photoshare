@@ -8,7 +8,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Edit</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,9 @@
                         <button @click.prevent="edit(album.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editComponentModal">
                             Edit
                         </button>
+                    </td>
+                    <td>
+                        <button @click.prevent="deleteRecord(album.id)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -62,6 +66,33 @@ import axios from 'axios';
             },
             recordUpdate(response) {
                 this.albums = response.data;
+            },
+            deleteRecord(id) {
+                Swal.fire({
+                    position: 'center',
+                    title: 'Are you sure?',
+                    icon: 'warning',
+                    text: "You won't be able to revert this!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it',
+                }).then((result) => {
+                    if (result.value) {
+                        axios.delete('/albums/'+id+'/delete').then((response) => {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Album has been deleted',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            this.albums = response.data;
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                    }
+                });
             }
         }
     }

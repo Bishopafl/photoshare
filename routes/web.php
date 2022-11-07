@@ -21,9 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::put('albums/{id}/edit', [AlbumController::class, 'update'])->middleware('auth');
-Route::get('/albums', [AlbumController::class, 'index'])->middleware('auth');
-Route::get('/albums/create', [AlbumController::class, 'create'])->name('album.create')->middleware('auth');
-Route::post('/albums/store', [AlbumController::class, 'store'])->middleware('auth');
 Route::get('/getalbums', [AlbumController::class, 'getAlbums'])->middleware('auth');
+
+Route::get('/albums/create', [AlbumController::class, 'create'])->name('album.create')->middleware('auth');
+
+Route::get('/albums', [AlbumController::class, 'index'])->middleware('auth');
+Route::post('/albums/store', [AlbumController::class, 'store'])->middleware('auth');
+Route::put('albums/{id}/edit', [AlbumController::class, 'update'])->middleware('auth');
+Route::delete('/albums/{id}/delete', [AlbumController::class, 'destroy'])->middleware('auth');

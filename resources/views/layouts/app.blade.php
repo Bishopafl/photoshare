@@ -36,6 +36,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <a href="{{ url('/albums') }}" class="navbar-brand">My Albums</a>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
