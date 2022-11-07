@@ -70,7 +70,6 @@ export default {
             })
         },
         onImageChange(e) {
-            console.log(e.target.files[0]);
             this.image = e.target.files[0];
         },
         createAlbum() {
@@ -90,7 +89,7 @@ export default {
                 this.description = '',
                 this.category = '',
                 this.albumId = response.data.id,
-                console.log(response.data.id);
+                // console.log(response.data.id);
                 this.success=true;
             }).catch((error) => {
                 console.log(error)

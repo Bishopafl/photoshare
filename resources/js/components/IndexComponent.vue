@@ -21,15 +21,17 @@
                     <td>{{ album.description }}</td>
                     <td>{{ album.category.name }}</td>
                     <td>
-                        <button @click.prevent="edit(album.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button @click.prevent="edit(album.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editComponentModal">
                             Edit
                         </button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <edit :editrecord="records" />
-
+        <edit 
+            :editrecord="records" 
+            @recordUpdated="recordUpdate" 
+        />
     </div>
 </template>
 
@@ -57,6 +59,9 @@ import axios from 'axios';
                 }).catch((error) => {
                     alert('unable to fetch data')
                 });
+            },
+            recordUpdate(response) {
+                this.albums = response.data;
             }
         }
     }

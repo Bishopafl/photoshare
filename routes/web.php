@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::put('albums/{id}/edit', [AlbumController::class, 'update'])->middleware('auth');
 Route::get('/albums', [AlbumController::class, 'index'])->middleware('auth');
 Route::get('/albums/create', [AlbumController::class, 'create'])->name('album.create')->middleware('auth');
 Route::post('/albums/store', [AlbumController::class, 'store'])->middleware('auth');
