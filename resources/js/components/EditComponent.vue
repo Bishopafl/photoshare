@@ -6,7 +6,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="editComponentModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" id="closeEditComponentModal" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                     
@@ -45,9 +45,8 @@
     </div>
 </template>
 <script type="text/javascript">
-import $ from 'jquery';
 import axios from 'axios';
-
+import $ from 'jquery';
 
     export default {
         props:['editrecord'],
@@ -83,8 +82,7 @@ import axios from 'axios';
                         "Content-Type" : "multipart/form-data"
                     }
                 }).then((response) => {
-                    /* somethings not right here... */
-                    $('#editComponentModal').modal('hide');
+                    $('#closeEditComponentModal').click();
                     this.$emit('recordUpdated', response);
                 }).catch((error) => {
                     console.log(error);
