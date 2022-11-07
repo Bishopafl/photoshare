@@ -27,6 +27,9 @@ app.component('index', IndexComponent);
 import EditComponent from './components/EditComponent.vue';
 app.component('edit', EditComponent);
 
+import UploadComponent from './components/UploadComponent.vue';
+app.component('upload', UploadComponent);
+
 
 /**
  * The following block of code may be used to automatically register your

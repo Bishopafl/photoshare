@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,6 @@ Route::get('/albums', [AlbumController::class, 'index'])->middleware('auth');
 Route::post('/albums/store', [AlbumController::class, 'store'])->middleware('auth');
 Route::put('albums/{id}/edit', [AlbumController::class, 'update'])->middleware('auth');
 Route::delete('/albums/{id}/delete', [AlbumController::class, 'destroy'])->middleware('auth');
+
+Route::get('/upload/images', [GalleryController::class, 'create'])->middleware('auth');
+Route::post('/uploadImage', [GalleryController::class, 'upload'])->middleware('auth');
