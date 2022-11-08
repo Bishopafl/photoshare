@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Image as ModelsImage;
+use App\Models\Image;
 
 class GalleryController extends Controller
 {
@@ -16,7 +16,7 @@ class GalleryController extends Controller
             $name = $file->hashName();
             $file->move(public_path().'/images/', $name);
 
-            $file = new ModelsImage();
+            $file = new Image();
             $file->album_id = $request->album_id;
             $file->image = $name;
             $file->save();
