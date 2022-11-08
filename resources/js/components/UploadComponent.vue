@@ -15,9 +15,9 @@
 import axios from 'axios';
 
 export default {
+    props:['album_id'],
     data() {
         return {
-            album_id: 1,
             uploadPercentage: '',
             uploading: false,
         }

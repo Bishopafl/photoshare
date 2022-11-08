@@ -7,7 +7,9 @@
             <div class="card">
                 <div class="card-header">Dash</div>
                 <div class="card-body">
-                    <upload />
+                    <upload
+                        :album_id={{ $album_id }}
+                    />
                 </div>
             </div>
         </div>
