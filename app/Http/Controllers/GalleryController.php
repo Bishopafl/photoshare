@@ -11,18 +11,16 @@ class GalleryController extends Controller
 {
     public function create($id) {
         /* Check if this album belongs to this user */
-        $albumBelongsToUser = Album::where('user_id', auth()->user()->id)->where('id', $id)->exists();
-        
-        /* somethings not right here.... */
+        $albumBelongsToUser = Album::where('user_id', auth()->user()->id)->exists();
         if ($albumBelongsToUser) {
             $album_id = $id;
             session()->put('id', $id);
             return view('image.create', compact('album_id'));
         } else {
-            // return redirect()->back();
-            dd('here');
+            return redirect()->back();
         }
     }
+    
 
     public function upload(Request $request) {
         $this->validate($request, [
