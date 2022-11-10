@@ -22,6 +22,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/albums/{slug}/{id}', [GalleryController::class, 'viewAlbum']);
+
 Route::get('/getalbums', [AlbumController::class, 'getAlbums'])->middleware('auth');
 
 Route::get('/getimages', [GalleryController::class, 'images'])->middleware('auth');
