@@ -8,7 +8,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Upload</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
@@ -23,13 +24,29 @@
                     <td>{{ album.description }}</td>
                     <td>{{ album.category.name }}</td>
                     <td>
+                        <a :href="'/albums/' + album.slug + '/' + album.id">
+                            <button 
+                                type="button" 
+                                class="btn btn-info"
+                            >
+                            View
+                            </button>
+                        </a>
+                    </td>
+                    <td>
                         <a :href="'/upload/images/'+album.id">
                             <button class="btn btn-success"> Upload</button>
                         </a>
                     </td>
                     <td>
-                        <button @click.prevent="edit(album.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editComponentModal">
-                            Edit
+                        <button 
+                            @click.prevent="edit(album.id)" 
+                            type="button" 
+                            class="btn btn-primary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#editComponentModal"
+                        >
+                        Edit
                         </button>
                     </td>
                     <td>
