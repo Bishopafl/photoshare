@@ -38,7 +38,7 @@
             </div>
         </form>
         <div v-if="success">
-            <a :href="'/upload/images/'+album.id">Your album is created. Please click the link to upload your photos!</a>
+            <a :href="'/upload/images/'+albumId">Your album is created. Please click the link to upload your photos!</a>
         </div>
     </div>
 </template>
@@ -79,17 +79,18 @@ export default {
             formData.append('name', this.name);
             formData.append('description', this.description);
             formData.append('category_id', this.category);
+            
             axios.post('/albums/store', formData, {
                 headers:{
                     "Content-Type":"multipart/form-data",
                 }
             }).then((response) => {
+                console.log(response);
                 this.image = '',
                 this.name = '',
                 this.description = '',
                 this.category = '',
                 this.albumId = response.data.id,
-                // console.log(response.data.id);
                 this.success=true;
             }).catch((error) => {
                 console.log(error)
