@@ -18,6 +18,7 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
-        "jquery": "^3.6.1"
+        "jquery": "^3.6.1",
+        "lightbox2": "^2.11.3"
     }
 }
