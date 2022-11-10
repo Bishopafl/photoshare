@@ -39,4 +39,8 @@ class GalleryController extends Controller
         }
         return response()->json(['success' => 'Your images successfully uploaded']);
     }
+
+    public function images() {
+        return Image::where('album_id', session()->get('id'))->get();
+    }
 }
