@@ -26,6 +26,8 @@ Route::get('/getalbums', [AlbumController::class, 'getAlbums'])->middleware('aut
 
 Route::get('/getimages', [GalleryController::class, 'images'])->middleware('auth');
 
+Route::delete('/image/{id}', [GalleryController::class, 'destroy'])->middleware('auth');
+
 Route::get('/albums/create', [AlbumController::class, 'create'])->name('album.create')->middleware('auth');
 
 Route::get('/albums', [AlbumController::class, 'index'])->middleware('auth');
