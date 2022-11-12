@@ -39,7 +39,13 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <a href="{{ url('/albums') }}" class="navbar-brand">My Albums</a>
+                        @if(Auth::check())
+                            <a href="{{ route('user.album', [auth()->user()->id]) }}" class="navbar-brand">My Albums</a>    
+                        
+
+                            <a href="{{ url('/albums') }}" class="navbar-brand">My Dashboard</a>
+
+                        @endif
 
                         <!-- Authentication Links -->
                         @guest
