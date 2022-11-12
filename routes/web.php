@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,15 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
+Route::get('/' , [FrontEndController::class, 'index']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/albums/{slug}/{id}', [GalleryController::class, 'viewAlbum']);
+Route::get('/user/profile/{id}', [FrontEndController::class, 'userAlbum'])->name('user.album');
+
+Route::get('/albums/{slug}/{id}', [GalleryController::class, 'viewAlbum'])->name('view.album');
 
 Route::get('/getalbums', [AlbumController::class, 'getAlbums'])->middleware('auth');
 
