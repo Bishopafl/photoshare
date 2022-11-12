@@ -18,4 +18,8 @@ class Album extends Model
     public function albumimages() {
         return $this->hasMany(Image::class, 'album_id', 'id');
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
