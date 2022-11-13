@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -60,7 +61,12 @@ class User extends Authenticatable
      * @return bool
      */
     public function amIfollowing($userId){
-        return DB::table('followers')->where('follower_id', auth()->user()->id)->where('following_id', $userId)->exists();
+        if (Auth::check()) {
+            $user = Auth()->user()->id;
+        } else {
+            $user = Auth::check();
+        }
+        return DB::table('followers')->where('follower_id', $user)->where('following_id', $userId)->exists();
     }
 
 

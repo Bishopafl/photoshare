@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndController extends Controller
 {
@@ -15,9 +16,15 @@ class FrontEndController extends Controller
 
     public function userAlbum($id) {
         $albums  = Album::where('user_id', $id)->get();
-        $userId  = $id;
-        $follows = (new User)->amIfollowing($userId);
+        if (Auth::check()) {
+            $userId  = $id;
+            $follows = (new User)->amIfollowing($userId);
+            return view('user-album', compact('albums', 'userId', 'follows'));
+        } else {
+            return view('user-album', compact('albums'));
+        }
+        
 
-        return view('user-album', compact('albums', 'userId', 'follows'));
+        
     }
 }

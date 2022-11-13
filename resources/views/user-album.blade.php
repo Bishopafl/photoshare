@@ -3,10 +3,16 @@
 @section('content')
 <div class="container">
     <div class="mb-3">
-        <img src="{{ asset('banner') }}/gojo.png" style="width: 100%" alt="">
+
+        @if (Auth::check() && auth()->user()->bgpic)
+            <img src="{{ Storage::url(auth()->user()->bgpic) }}" >
+        @else
+            <img src="{{ asset('banner') }}/gojo.png" style="width: 100%" alt="">
+        @endif
+
     </div>
     
-    @if (auth()->user()->id!=$userId)
+    @if (Auth::check() && auth()->user()->id!=$userId)
         <follow
             user-id="{{ $userId }}"
             follows="{{ $follows }}"

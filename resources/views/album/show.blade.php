@@ -9,7 +9,7 @@
                     {{ $albums[0]->user->name }}</a>
             </div>
             <div class="mb-2">
-                @if (auth()->user()->id!=$userId)
+                @if (Auth::check() && auth()->user()->id!=$userId)
                     <follow
                         user-id="{{ $userId }}"
                         follows="{{ $follows }}"
