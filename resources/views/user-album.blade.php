@@ -6,6 +6,12 @@
         <img src="{{ asset('banner') }}/gojo.png" style="width: 100%" alt="">
     </div>
     
+    @if (auth()->user()->id!=$userId)
+        <follow
+            user-id="{{ $userId }}"
+            follows="{{ $follows }}"
+        />
+    @endif
 
     <div class="row">
         @foreach($albums as $album)
