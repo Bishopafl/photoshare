@@ -30,6 +30,9 @@ app.component('edit', EditComponent);
 import UploadComponent from './components/UploadComponent.vue';
 app.component('upload', UploadComponent);
 
+import FollowComponent from './components/FollowComponent.vue';
+app.component('follow', FollowComponent);
+
 
 /**
  * The following block of code may be used to automatically register your
