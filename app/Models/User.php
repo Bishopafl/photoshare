@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -42,4 +43,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationship between followers and users
+     * 
+     * 
+     */
+    public function following() {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
+    }
+
+    /**
+     * Call to followers table to see if the follower_id is the current logged in user
+     * and it exists in the table, then I am following this user
+     * 
+     * @return bool
+     */
+    public function amIfollowing($userId){
+        return DB::table('followers')->where('follower_id', auth()->user()->id)->where('following_id', $userId)->exists();
+    }
+
+
 }
