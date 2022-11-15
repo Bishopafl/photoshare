@@ -25,6 +25,8 @@ Auth::routes();
 
 Route::get('/' , [FrontEndController::class, 'index']);
 
+Route::get('/profile', [FollowController::class, 'profile'])->name('profile');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/follow', [FollowController::class, 'followUnfollow']);
